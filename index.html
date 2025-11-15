@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refractions of Desire</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        body{font-family:'Playfair Display',serif;background:linear-gradient(135deg,#1a0b2e,#4a1e6b,#8b5fbf);color:#f8f4ff;max-width:800px;margin:0 auto;padding:20px;line-height:1.7;position:relative;overflow-x:hidden}
+        body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(circle at 20% 30%,rgba(255,105,180,0.1) 2%,transparent 20%),radial-gradient(circle at 80% 70%,rgba(147,112,219,0.1) 2%,transparent 20%),radial-gradient(circle at 40% 80%,rgba(255,215,0,0.1) 2%,transparent 20%);z-index:-1;animation:float 20s infinite linear}
+        @keyframes float{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(180deg)}100%{transform:translateY(0) rotate(360deg)}}
+        .passage{background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);padding:40px;border-radius:20px;margin:25px 0;border:1px solid rgba(255,255,255,0.15);box-shadow:0 8px 32px rgba(31,38,135,0.37);position:relative;overflow:hidden}
+        .passage::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);transform:rotate(45deg);animation:shine 3s infinite}
+        @keyframes shine{0%{transform:translateX(-100%) translateY(-100%) rotate(45deg)}100%{transform:translateX(100%) translateY(100%) rotate(45deg)}}
+        h1{font-family:'Cinzel Decorative',cursive;background:linear-gradient(45deg,#ff6b6b,#ffd700,#4ecdc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;font-size:3em;margin-bottom:40px;text-shadow:0 0 30px rgba(255,215,0,0.5);animation:glow 2s ease-in-out infinite alternate}
+        @keyframes glow{from{text-shadow:0 0 20px rgba(255,215,0,0.5)}to{text-shadow:0 0 30px rgba(255,107,107,0.8),0 0 40px rgba(255,215,0,0.6)}}
+        h2{font-family:'Cinzel Decorative',cursive;color:#ffd700;border-bottom:2px solid transparent;border-image:linear-gradient(45deg,#ff6b6b,#ffd700,#4ecdc4) 1;padding-bottom:15px;text-align:center;font-size:2em}
+        .choice{display:block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:18px 30px;margin:20px 0;border:none;border-radius:50px;text-decoration:none;font-size:1.2em;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);text-align:center;position:relative;overflow:hidden;font-family:'Playfair Display',serif;box-shadow:0 5px 15px rgba(118,75,162,0.4)}
+        .choice::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:0.5s}
+        .choice:hover{background:linear-gradient(135deg,#ff6b6b 0%,#ff8e8e 100%);transform:translateY(-5px) scale(1.02);box-shadow:0 10px 25px rgba(255,107,107,0.5)}
+        .choice:hover::before{left:100%}
+        .stats{background:linear-gradient(135deg,rgba(102,126,234,0.2),rgba(118,75,162,0.2));padding:20px;border-radius:15px;margin:25px 0;display:flex;justify-content:space-around;border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(5px)}
+        .stat-item{text-align:center;padding:10px}
+        .stat-item strong{display:block;color:#ffd700;margin-bottom:5px;font-size:1.1em}
+        .world-indicator{background:linear-gradient(135deg,rgba(255,215,0,0.3),rgba(255,107,107,0.3));padding:15px;border-radius:15px;margin:20px 0;text-align:center;border:1px solid rgba(255,215,0,0.5);font-family:'Cinzel Decorative',cursive;font-size:1.3em;animation:pulse 2s infinite}
+        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,215,0,0.4)}70%{box-shadow:0 0 0 10px rgba(255,215,0,0)}100%{box-shadow:0 0 0 0 rgba(255,215,0,0)}}
+        .image-container{text-align:center;margin:30px 0;position:relative}
+        .story-image{max-width:100%;max-height:400px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3);transition:transform 0.3s ease;object-fit:cover}
+        .story-image:hover{transform:scale(1.02)}
+        .image-placeholder{width:100%;height:300px;background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,107,107,0.1));border-radius:15px;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,0.3);color:rgba(255,255,255,0.5);font-style:italic}
+        .mirror-text{background:linear-gradient(135deg,rgba(78,205,196,0.2),rgba(102,126,234,0.2));color:#e0f7fa;font-style:italic;border-left:4px solid #4ecdc4;padding:25px;margin:25px 0;border-radius:0 15px 15px 0;position:relative;font-size:1.1em;box-shadow:0 5px 15px rgba(78,205,196,0.3)}
+        .mirror-text::before{content:'"';font-size:4em;color:rgba(78,205,196,0.3);position:absolute;top:-10px;left:10px;font-family:serif}
+        .ending{background:linear-gradient(135deg,#667eea,#764ba2,#ff6b6b);padding:50px;border-radius:25px;text-align:center;margin:40px 0;position:relative;overflow:hidden}
+        .ending::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.1) 1%,transparent 1%);background-size:50px 50px;animation:sparkle 4s linear infinite}
+        @keyframes sparkle{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-100px) rotate(360deg)}}
+        .romantic-glow{animation:romanticGlow 3s ease-in-out infinite alternate}
+        @keyframes romanticGlow{from{box-shadow:0 0 20px rgba(255,105,180,0.5)}to{box-shadow:0 0 40px rgba(255,20,147,0.8),0 0 60px rgba(255,105,180,0.6)}}
+        .floating-hearts::before{content:'♥';position:absolute;color:rgba(255,105,180,0.6);font-size:2em;animation:floatUp 6s linear infinite}
+        .floating-hearts::after{content:'♥';position:absolute;color:rgba(255,215,0,0.6);font-size:1.5em;animation:floatUp 8s linear infinite 2s}
+        @keyframes floatUp{0%{transform:translateY(100px) rotate(0);opacity:0}50%{opacity:1}100%{transform:translateY(-100px) rotate(360deg);opacity:0}}
+        .crossword-grid{display:grid;grid-template-columns:repeat(7,50px);grid-gap:2px;margin:20px auto;justify-content:center}
+        .crossword-cell{width:50px;height:50px;border:2px solid #ffd700;display:flex;align-items:center;justify-content:center;background:rgba(255,215,0,0.1);font-size:1.2em;font-weight:bold}
+        .crossword-cell input{width:100%;height:100%;border:none;background:transparent;text-align:center;font-size:1.2em;color:#ffd700;text-transform:uppercase}
+        .writing-interface{background:rgba(255,255,255,0.1);padding:30px;border-radius:15px;margin:20px 0;border:2px solid #4ecdc4}
+        .writing-textarea{width:100%;height:200px;background:rgba(255,255,255,0.05);border:1px solid #4ecdc4;border-radius:10px;padding:15px;color:white;font-family:'Playfair Display',serif;font-size:1.1em;resize:vertical}
+        .music-controls{position:fixed;top:20px;right:20px;z-index:1000}
+        .music-btn{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:50px;height:50px;color:white;font-size:1.5em;cursor:pointer;backdrop-filter:blur(10px);margin:5px}
+        .final-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:30px 0}
+        .final-stat-box{background:rgba(255,255,255,0.1);padding:25px;border-radius:15px;border:1px solid rgba(255,255,255,0.2);text-align:center}
+        .final-stat-box h3{color:#ffd700;margin-bottom:15px;font-family:'Cinzel Decorative',cursive}
+        .world-scores{display:flex;justify-content:space-around;margin-top:10px}
+        .world-score-item{text-align:center}
+        .world-score-item .world-name{font-size:0.9em;color:#ffd700;margin-bottom:5px}
+        .world-score-item .world-value{font-size:1.3em;font-weight:bold}
+        .analysis-container{background:rgba(255,255,255,0.08);padding:30px;border-radius:15px;margin:25px 0;border:1px solid rgba(255,255,255,0.15)}
+        .personality-type{font-size:1.4em;color:#ffd700;text-align:center;margin:20px 0;font-family:'Cinzel Decorative',cursive}
+        .analysis-details{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+        .analysis-column{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px}
+        @keyframes twinkle{0%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0)}}
+    </style>
+</head>
+<body>
+    <div class="music-controls"><button class="music-btn" onclick="toggleMusic()">🎵</button></div>
+    <div class="floating-hearts" style="position:fixed;top:10%;left:10%"></div>
+    <div class="floating-hearts" style="position:fixed;top:20%;right:15%"></div>
+    <div class="floating-hearts" style="position:fixed;bottom:30%;left:20%"></div>
+    <audio id="backgroundMusic" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mp3"></audio>
+    <script>
+        let gameState={linguisticAptitude:0,emotionalInsight:0,currentWorld:'reality',cinematicEchoes:[],playerStory:"",worldScores:{gilded:0,sepia:0,neon:0},worldSequence:[],currentWorldIndex:0,crosswordAttempts:0,worldsCompleted:0,choices:{gilded:{iceCream:null,initialResponse:null},sepia:{touchResponse:null,exploration:null},neon:{escapeDirection:null,initialChoice:null}},personalityTraits:{boundaryStrength:0,romanticTendency:0,rebelliousSpirit:0,selfAwareness:0}};
+        
+        // 修复后的图片配置 - 使用正确的Imgur链接格式
+        const imageSources={
+            'prologue':'https://i.imgur.com/dkzD3ar.jpg',
+            'world-selection':'https://i.imgur.com/oBP5aVn.jpg',
+            'gilded-street':'https://i.imgur.com/vSomsnH.jpg',
+            'gilded-car':'https://i.imgur.com/O86WBfu.jpg',
+            'gilded-icecream':'https://i.imgur.com/kJ6KAU6.jpg',
+            'gilded-crossword':'https://i.imgur.com/o5tuuLy.jpg',
+            'sepia-river':'https://i.imgur.com/hbufob5.jpg',
+            'sepia-hands':'https://i.imgur.com/2qOw9Cu.jpg',
+            'sepia-mansion':'https://i.imgur.com/chxUz8U.jpg',
+            'sepia-shrine':'https://i.imgur.com/L6o5bLV.jpg',
+            'sepia-orchids':'https://i.imgur.com/VbDpjhO.jpg',
+            'sepia-start':'https://i.imgur.com/sePOPgr.jpg',
+            'neon-library':'https://i.imgur.com/5pIc39L.jpg',
+            'neon-hallways':'https://i.imgur.com/a0ze2An.jpg',
+            'neon-science':'https://i.imgur.com/3Yeh1Te.jpg',
+            'neon-exit':'https://i.imgur.com/mCkbDxr.jpg',
+            'neon-writing':'https://i.imgur.com/bbu7enO.jpg',
+            'final-writing':'https://i.imgur.com/eH04jS9.jpg',
+            'final-analysis':'https://i.imgur.com/QG0Lh1l.jpg'
+        };
+
+        let musicEnabled=true;
+        function toggleMusic(){const m=document.getElementById('backgroundMusic');if(musicEnabled){m.pause();musicEnabled=false}else{m.play();musicEnabled=true}}
+        window.addEventListener('click',function(){const m=document.getElementById('backgroundMusic');if(m.paused&&musicEnabled){m.play().catch(e=>console.log('Autoplay prevented'))}},{once:true});
+        function loadImage(i,e){const l=new Image();l.onload=function(){i.src=imageSources[e];i.alt=e.replace('-',' ');i.style.display='block';const p=i.parentElement.querySelector('.image-placeholder');if(p){p.style.display='none'}};l.onerror=function(){console.log(`Failed to load image: ${imageSources[e]}`);const p=i.parentElement.querySelector('.image-placeholder');if(p){p.style.display='flex'}};l.src=imageSources[e]}
+        function initializeImages(){document.querySelectorAll('.story-image').forEach(i=>{const e=i.dataset.imageKey;if(e&&imageSources[e]){loadImage(i,e)}})}
+        function updateStats(l=0,e=0,w=null,p={}){gameState.linguisticAptitude+=l;gameState.emotionalInsight+=e;if(w){gameState.worldScores[w]+=(l+e)}Object.keys(p).forEach(t=>{gameState.personalityTraits[t]+=p[t]});updateStatsDisplay()}
+        function updateStatsDisplay(){document.getElementById('ling-stat').textContent=gameState.linguisticAptitude;document.getElementById('emo-stat').textContent=gameState.emotionalInsight}
+        function addEcho(e){if(!gameState.cinematicEchoes.includes(e)){gameState.cinematicEchoes.push(e)}}
+        function showPassage(e){document.querySelectorAll('.passage').forEach(p=>p.style.display='none');document.getElementById(e).style.display='block';updateStatsDisplay();setTimeout(initializeImages,100)}
+        function setWorldSequence(e){gameState.worldSequence=e;gameState.currentWorldIndex=0;gameState.currentWorld=e[0];gameState.worldsCompleted=0}
+        function proceedToNextWorld(){gameState.worldsCompleted++;if(gameState.worldsCompleted>=3){showPassage('final-writing');return}
+        gameState.currentWorldIndex++;if(gameState.currentWorldIndex<gameState.worldSequence.length){const e=gameState.worldSequence[gameState.currentWorldIndex];gameState.currentWorld=e;if(e==='gilded'){showPassage('gilded-start')}else if(e==='sepia'){showPassage('sepia-start')}else if(e==='neon'){showPassage('neon-start')}}else{showPassage('final-writing')}}
+        function checkCrossword(){const e={'1-1':'L','1-2':'O','1-3':'L','1-4':'I','1-5':'T','1-6':'A','2-1':'L','2-2':'O','2-3':'L','2-4':'L','2-5':'I','3-1':'L','3-2':'O','3-3':'V','3-4':'E'};let t=true;for(const[o,n]of Object.entries(e)){const r=document.getElementById(`cell-${o}`);if(!r||r.value.toUpperCase()!==n){t=false;break}}
+        if(t){gameState.crosswordAttempts=0;addEcho('Shattered Illusion');updateStats(5,0,'gilded',{selfAwareness:3});proceedToNextWorld()}else{gameState.crosswordAttempts++;if(gameState.crosswordAttempts>=2){showCrosswordAnswers()}else{alert('Not quite right... Try again. Look for the patterns of obsession and innocence.')}}}
+        function showCrosswordAnswers(){const e={'1-1':'L','1-2':'O','1-3':'L','1-4':'I','1-5':'T','1-6':'A','2-1':'L','2-2':'O','2-3':'L','2-4':'L','2-5':'I','3-1':'L','3-2':'O','3-3':'V','3-4':'E'};for(const[t,l]of Object.entries(e)){const o=document.getElementById(`cell-${t}`);if(o){o.value=l}}
+        setTimeout(()=>{alert('The answers are: LOLITA, LOLLI, LOVE. Sometimes we need help to see the truth clearly.');addEcho('Guided Revelation');updateStats(2,3,'gilded',{selfAwareness:1});proceedToNextWorld()},500)}
+        function saveStory(){const e=document.getElementById('storyText').value;if(e.trim()===''){alert('Please write your story before saving. Your words are important.');return}
+        gameState.playerStory=e;localStorage.setItem('playerStory',e);showFinalAnalysis()}
+        function loadSavedStory(){const e=localStorage.getItem('playerStory');if(e){document.getElementById('storyText').value=e}}
+        function showFinalAnalysis(){document.getElementById('final-ling').textContent=gameState.linguisticAptitude;document.getElementById('final-emo').textContent=gameState.emotionalInsight;document.getElementById('gold-score').textContent=gameState.worldScores.gilded;document.getElementById('sepia-score').textContent=gameState.worldScores.sepia;document.getElementById('neon-score').textContent=gameState.worldScores.neon;document.getElementById('displayed-story').textContent=gameState.playerStory;const e=calculateFinalAnalysis();document.getElementById('personality-type').textContent=e.personalityType;document.getElementById('personality-description').innerHTML=e.description;document.getElementById('strengths-list').innerHTML=e.strengths;document.getElementById('growth-areas-list').innerHTML=e.growthAreas;document.getElementById('boundary-strength').textContent=gameState.personalityTraits.boundaryStrength;document.getElementById('romantic-tendency').textContent=gameState.personalityTraits.romanticTendency;document.getElementById('rebellious-spirit').textContent=gameState.personalityTraits.rebelliousSpirit;document.getElementById('self-awareness').textContent=gameState.personalityTraits.selfAwareness;showPassage('final-analysis')}
+        function calculateFinalAnalysis(){const e=gameState.personalityTraits,t=gameState.worldScores,n=Object.keys(t).reduce((e,t)=>t[e]>t[t]?e:t);let l='',o='',r='',c='';if(e.boundaryStrength>=8&&e.selfAwareness>=7){l="🌟 The Wise Boundary-Keeper";o="You possess remarkable self-awareness and strong boundaries. You navigate complex emotional landscapes with wisdom and discernment, knowing when to open your heart and when to protect it.";r="<li>Exceptional emotional intelligence</li><li>Strong personal boundaries</li><li>Balanced approach to relationships</li>";c="<li>Learning to be more spontaneous</li><li>Trusting intuition over analysis</li>"}else if(e.romanticTendency>=8&&e.selfAwareness>=6){l="💫 The Romantic Realist";o="You embrace romance and passion while maintaining a grounded perspective. You understand that love can be both magical and practical, and you navigate this balance with grace.";r="<li>Deep capacity for love and connection</li><li>Practical romantic wisdom</li><li>Emotional resilience</li>";c="<li>Setting clearer boundaries in passion</li><li>Balancing heart and head</li>"}else if(e.rebelliousSpirit>=8){l="⚡ The Boundary-Breaker";o="You challenge conventions and redefine relationships on your own terms. Your rebellious spirit helps you break free from limiting patterns and create authentic connections.";r="<li>Courage to challenge norms</li><li>Authentic self-expression</li><li>Innovative approach to love</li>";c="<li>Learning when rebellion serves growth</li><li>Balancing freedom with commitment</li>"}else if(n==='gilded'){l="🌹 The Golden Dreamer";o="You're drawn to the intoxicating beauty of forbidden love and complex relationships. You see the poetry in dangerous attractions but are learning to navigate them wisely.";r="<li>Appreciation for complex beauty</li><li>Emotional depth</li><li>Ability to see multiple perspectives</li>";c="<li>Developing stronger boundaries</li><li>Distinguishing fantasy from reality</li>"}else if(n==='sepia'){l="🍂 The Melancholy Romantic";o="You find beauty in transience and understand that some loves are meant to be fleeting. Your heart holds space for both the joy and sorrow of human connection.";r="<li>Deep emotional understanding</li><li>Appreciation for life's fleeting moments</li><li>Resilience in love and loss</li>";c="<li>Allowing yourself to hope for lasting love</li><li>Balancing nostalgia with present moments</li>"}else{l="💥 The Authentic Rebel";o="You refuse to be confined by others' expectations of love and relationships. Your journey is about discovering your authentic self and creating connections that honor your truth.";r="<li>Strong sense of self</li><li>Courage to be different</li><li>Commitment to authenticity</li>";c="<li>Learning to be vulnerable</li><li>Balancing independence with connection</li>"}
+        return{personalityType:l,description:o,strengths:r,growthAreas:c}}
+        document.addEventListener('DOMContentLoaded',function(){updateStatsDisplay();loadSavedStory();initializeImages()});
+        setInterval(()=>{const e=document.createElement('div');e.style.cssText='position:fixed;width:2px;height:2px;background:white;border-radius:50%;pointer-events:none;z-index:-1;animation:twinkle 1s ease-in-out';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';document.body.appendChild(e);setTimeout(()=>e.remove(),1000)},500);
+    </script>
+
+    <!-- 游戏内容 -->
+    <div id="prologue" class="passage romantic-glow" style="display:block">
+        <h1>Refractions of Desire</h1>
+        <div style="text-align:center;margin:20px 0"><span style="color:#ffd700">✦</span><span style="color:#ff6b6b">✦</span><span style="color:#4ecdc4">✦</span><span style="color:#9b59b6">✦</span><span style="color:#ffd700">✦</span></div>
+        <div class="image-container"><img src="" data-image-key="prologue" class="story-image" style="display:none"><div class="image-placeholder">Loading Moonlight Bedroom Scene...</div></div>
+        <div class="stats"><div class="stat-item"><strong>💫 Linguistic</strong><br><span id="ling-stat">0</span></div><div class="stat-item"><strong>💖 Emotional</strong><br><span id="emo-stat">0</span></div></div>
+        <p style="text-align:center;font-size:1.2em;color:#ffd700">"Where dreams and reality dance in the moonlight..."</p>
+        <p>Moonlight spills through your window, painting silver patterns on the floor. You hold the note, its words glowing with unspoken meaning.</p>
+        <p><strong style="color:#ff6b6b">"An 'A'. And a request to stay after class. For weeks, I replayed every possible meaning of that note."</strong></p>
+        <p><strong style="color:#4ecdc4">"What's wrong with me? He's my teacher. It's a boundary. I know this. So why does it feel like my heart is trying to cross it every time he looks at me?"</strong></p>
+        <div class="mirror-text"><p><strong>Mirror Vivian:</strong> "Because you're asking the wrong question, little scholar. The stars themselves whisper your answer... It's not 'What's wrong with me?' It's 'What is this feeling, and what magic is it trying to teach me?'"</p></div>
+        <p>The mirror shimmers like liquid starlight, showing a confident version of yourself wreathed in moonbeams.</p>
+        <div class="mirror-text"><p><strong>Mirror Vivian:</strong> "I'm the part of you that dances with shadows and catches moonlight. The part that knows an 'A' and a 'See me' note can feel more thrilling than any fairy tale. Come, let's paint our own constellations."</p></div>
+        <a class="choice" onclick="showPassage('world-selection')">✨ Step into the Starlight Portal ✨</a>
+    </div>
+
+    <!-- 其他游戏场景保持不变 -->
+    <div id="world-selection" class="passage" style="display:none">
+        <h2>Choose Your Celestial Reflection</h2>
+        <div class="image-container"><img src="" data-image-key="world-selection" class="story-image" style="display:none"><div class="image-placeholder">Loading Starlight Portal...</div></div>
+        <div class="mirror-text"><p><strong>Mirror Vivian:</strong> "Each reflection is a different color of love's rainbow. Choose the hue that calls to your soul tonight..."</p></div>
+        <div class="world-choices">
+            <a class="choice" onclick="setWorldSequence(['gilded','sepia','neon']);addEcho('Golden Whirlpool');showPassage('gilded-start')">🌟 The Gilded Whirlpool 🌟<br><small>Sequence: Lolita → The Lover → Breakfast Club</small></a>
+            <a class="choice" onclick="setWorldSequence(['sepia','gilded','neon']);addEcho('Sepia Haze');showPassage('sepia-start')">🍂 The Sepia Haze 🍂<br><small>Sequence: The Lover → Lolita → Breakfast Club</small></a>
+            <a class="choice" onclick="setWorldSequence(['neon','sepia','gilded']);addEcho('Neon Fracture');showPassage('neon-start')">💥 The Neon Fracture 💥<br><small>Sequence: Breakfast Club → The Lover → Lolita</small></a>
+        </div>
+    </div>
+
+    <!-- 洛丽塔世界场景 -->
+    <div id="gilded-start" class="passage" style="display:none">
+        <div class="world-indicator">🌟 The Gilded Whirlpool • Where Dreams Turn Golden 🌟</div>
+        <div class="image-container"><img src="" data-image-key="gilded-street" class="story-image" style="display:none"><div class="image-placeholder">Loading Golden Street Scene...</div></div>
+        <p>You step into a world where everything glows with eternal sunset. The air tastes like honey and summer roses.</p>
+        <p>You touch your hair - now flowing gold like liquid sunlight. <strong style="color:#ffd700">"My... my hair... it's like captured starlight..."</strong></p>
+        <p>A car made of sunlight and dreams pulls up. The driver's smile holds both warmth and warning.</p>
+        <p><strong style="color:#e74c3c">Humbert:</strong> "Well, hello there. You seem to have stolen all the starlight for your hair."</p>
+        <p><strong style="color:#e74c3c">Humbert:</strong> "Can I offer a ride to someone who outshines the sun itself?"</p>
+        <a class="choice" onclick="gameState.choices.gilded.initialResponse='playful';updateStats(3,-1,'gilded',{boundaryStrength:-2,romanticTendency:3});showPassage('gilded-response-playful')">💋 "Is that your best line, mister?"<br><small>+3 Linguistic, -1 Emotional • Play with fire</small></a>
+        <a class="choice" onclick="gameState.choices.gilded.initialResponse='polite';updateStats(1,2,'gilded',{boundaryStrength:3,selfAwareness:2});showPassage('gilded-response-polite')">🛡️ "No, thank you. I'm waiting for my mother."<br><small>+1 Linguistic, +2 Emotional • Build boundaries</small></a>
+        <a class="choice" onclick="gameState.choices.gilded.initialResponse='vulnerable';updateStats(0,3,'gilded',{boundaryStrength:-1,romanticTendency:2});showPassage('gilded-response-vulnerable')">🦋 "I... I don't know where I am."<br><small>+3 Emotional • Show vulnerability</small></a>
+    </div>
+
+    <!-- 其他场景保持不变 -->
+    <div id="gilded-response-polite" class="passage" style="display:none">
+        <div class="world-indicator">🌟 The Gilded Whirlpool</div>
+        <div class="image-container"><img src="" data-image-key="gilded-car" class="story-image" style="display:none"><div class="image-placeholder">Loading Car Scene...</div></div>
+        <p><strong style="color:#e74c3c">Humbert:</strong> "A dutiful daughter. How... modern."</p>
+        <p>The car doesn't move, but his gaze intensifies. The golden light seems to pulse around you.</p>
+        <div class="mirror-text"><p><strong>Mirror Vivian:</strong> "Good. You set a boundary. But he's testing it. Notice how he doesn't accept your refusal? The dance has begun."</p></div>
+        <p><strong style="color:#e74c3c">Humbert:</strong> "Surely your mother wouldn't mind if you had some ice cream? There's a wonderful parlor just down the street. The strawberry is particularly... enchanting."</p>
+        <a class="choice" onclick="gameState.choices.gilded.iceCream='accept';updateStats(0,1,'gilded',{boundaryStrength:-2,romanticTendency:2});showPassage('gilded-ice-cream-accept')">🍓 "Alright, just for a moment."<br><small>Accept reluctantly</small></a>
+        <a class="choice" onclick="gameState.choices.gilded.iceCream='refuse';updateStats(2,3,'gilded',{boundaryStrength:4,selfAwareness:3});showPassage('gilded-ice-cream-refuse')">❌ "I really must go home."<br><small>Stand your ground</small></a>
+    </div>
+
+    <!-- 其他场景代码保持不变 -->
+    <!-- ... -->
+
+</body>
+</html>
